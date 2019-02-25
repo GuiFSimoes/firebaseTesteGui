@@ -1,5 +1,7 @@
 {
   "name": "firebaseTesteGui",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

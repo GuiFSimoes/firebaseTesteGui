@@ -7,6 +7,45 @@
 </ion-header>
 
 <ion-content padding>
+
   The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
+  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be
+    your guide.</p>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md>
+        <ion-item>
+          <ion-label for="user" position="floating">E-mail</ion-label>
+          <ion-input id="user" [(ngModel)]="data.email"></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="12" size-md>
+        <ion-item>
+          <ion-label for="password" position="floating">Senha</ion-label>
+          <ion-input inputmode="password" id="password" [(ngModel)]="data.senha"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-button round (click)="logar()">Logar aki mesmo...</ion-button>
+    </ion-row>
+    <ion-row class="margem">
+      <ion-label color="secondary">Usuario:</ion-label>
+      <ion-label>{{usuarioLogado | json}}</ion-label>
+    </ion-row>
+    <ion-row>
+      <ion-label color="secondary">Log:</ion-label>
+      <ion-label>{{saida | json}}</ion-label>
+    </ion-row>
+
+    <ion-row class="margem">
+        <ion-label color="secondary">Lista DB:</ion-label>
+        
+        
+
+      </ion-row>
+
+  </ion-grid>
+
 </ion-content>

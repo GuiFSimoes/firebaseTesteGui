@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+};
+
+export const firebaseConfig = {
+  apiKey: 'AIzaSyCF3efbRjqNLcxjUyArHVkOPCR72yCW2Ms',
+  authDomain: 'studiopilates-a1b2.firebaseapp.com',
+  databaseURL: 'https://studiopilates-a1b2.firebaseio.com',
+  projectId: 'studiopilates-a1b2',
+  storageBucket: 'studiopilates-a1b2.appspot.com',
+  messagingSenderId: '244195037137'
 };
 
 /*

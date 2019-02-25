@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "244195037137",
+    "firebase_url": "https://studiopilates-a1b2.firebaseio.com",
+    "project_id": "studiopilates-a1b2",
+    "storage_bucket": "studiopilates-a1b2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244195037137:android:0a7b12e9a739cd7a",
+        "android_client_info": {
+          "package_name": "br.com.pilatesstudio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244195037137-b5o0tp68c4mpgsa4aj87vcld246qa3c8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcljoW3sazl008S0fTlDBTzb5hU5B9mEc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
