@@ -1,26 +1,44 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, QueryFn } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
+
+export interface Nomes { descricao: string; }
+export interface NomesId extends Nomes { id: string; }
 
 @Injectable()
 export class NomesService {
 
     private pathDoc = 'lista-nomes/';
+    private itensCollection: AngularFirestoreCollection<Nomes>;
 
     constructor(
         private afstore: AngularFirestore
-    ) { }
+    ) {
+        this.itensCollection = this.afstore.collection<Nomes>(this.pathDoc);
+    }
 
-    getAll() {
-        return this.afstore.collection(this.pathDoc).valueChanges();
+    getAll_values() {
+        return this.itensCollection.valueChanges();
+    }
+
+    getAll_snapshot() {
+        return this.itensCollection.snapshotChanges().pipe(
+            map(actions => actions.map(a => {
+                const data = a.payload.doc.data() as Nomes;
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            })));
     }
 
     getKey(key: string) {
-        return this.afstore.doc(this.pathDoc + key).get();
+        return this.itensCollection.doc(key);
     }
 
-    save(object: any) {
-        if (object.key) {
-            // this.afstore.collection()
+    save(object: any, key?: any) {
+        if (key) {
+            this.itensCollection.doc(key).set(object);
+        } else {
+            this.itensCollection.add(object);
         }
     }
 }

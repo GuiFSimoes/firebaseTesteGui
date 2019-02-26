@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 
 import { FirebaseAuthentication } from '@ionic-native/firebase-authentication/ngx';
-import { Firebase } from '@ionic-native/firebase/ngx';
+import { NomesService, Nomes, NomesId } from 'src/services/nomes/nomes.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +16,16 @@ export class HomePage {
     senha: ''
   };
 
-  public usuarioLogado = {};
+  nomeEdit: NomesId;
+  listaNomes: Observable<Nomes[]>;
+  listaNomesId: Observable<NomesId[]>;
 
+  public usuarioLogado = {};
   public saida: any = {};
 
   constructor(
     private fbAuth: FirebaseAuthentication,
-    private fbService: Firebase
+    private nomesService: NomesService
   ) { }
 
   public logar() {
@@ -30,9 +34,6 @@ export class HomePage {
         this.usuarioLogado = res;
         this.saida = null;
         console.log(res);
-
-        
-
       })
       .catch((error: any) => {
         this.saida = error;
@@ -42,7 +43,26 @@ export class HomePage {
   }
 
   public getData() {
-    // this.fbService.
+    this.listaNomesId = this.nomesService.getAll_snapshot();
+  }
+
+  public clicou(event) {
+    // console.log('click item: ', event);
+    this.nomeEdit = event;
+    this.data.email = this.nomeEdit.descricao;
+  }
+
+  public adicionar() {
+    if (this.nomeEdit) {
+      const obj: Nomes = { descricao: this.data.email };
+      this.nomesService.save(obj, this.nomeEdit.id);
+    } else {
+      const obj: Nomes = { descricao: this.data.email };
+      this.nomesService.save(obj);
+    }
+    this.nomeEdit = null;
+    this.data.email = '';
+    this.data.senha = '';
   }
 
 }
